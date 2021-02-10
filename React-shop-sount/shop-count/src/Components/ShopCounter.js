@@ -12,9 +12,6 @@ const ShopCounter = () => {
   const changePrice = e => {
     setCurrentPrice(e.target.value);
   };
-  const countQantity = e => {
-    setCount(e.target.value);
-  };
   const HandleMinus = () => {
     if (count > 0) {
       setCount(count - 1);
