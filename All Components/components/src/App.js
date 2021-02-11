@@ -1,24 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import React, { useState, useEffect } from "react";
+import Nav from "./Components/Nav";
+import Counter from "./Components/Counter";
+import ShopCounter from "./Components/ShopCounter";
+import WindowWidth from "./Components/WindowWidth";
+import FormSignup from "./Components/FormSignup";
+import FormSuccess from "./Components/FormSuccess";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 function App() {
+  const [isSubmitted, setSubmitted] = useState(false);
+
+  function submitForm() {
+    setSubmitted(true);
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="App">
+        <header className="App-header">
+          <Nav />
+          <Switch>
+            <Route path="/counter" component={Counter} />
+            <Route path="/shopcounter" component={ShopCounter} />
+            <Route path="/windowwidth" component={WindowWidth} />
+            <Route
+              path="/formsignup"
+              component={FormSignup}
+              {...(!isSubmitted ? (
+                <FormSignup submitForm={submitForm} />
+              ) : (
+                <FormSuccess />
+              ))}
+            />
+          </Switch>
+          <img src={logo} className="App-logo" alt="logo" />
+        </header>
+      </div>
+    </Router>
   );
 }
 
