@@ -30,7 +30,7 @@ const ShopCounter = () => {
         id="standard-basic"
         defaultValue={currentPrice}
       />
-
+      {/* buttons */}
       <Button variant="contained" color="primary" onClick={HandleMinus}>
         Take Out Item
       </Button>
